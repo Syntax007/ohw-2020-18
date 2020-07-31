@@ -32,7 +32,7 @@ class MainButton extends StatelessWidget {
             style: TextStyle(
                 fontSize: 40.sp,
                 fontStyle: FontStyle.italic,
-                fontWeight: FontWeight.w400),
+                fontWeight: FontWeight.w500),
           ),
         ),
       ),

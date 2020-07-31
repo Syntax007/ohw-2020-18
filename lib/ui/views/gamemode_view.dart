@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truthordare/ui/shared/main_button.dart';
+import 'package:truthordare/ui/views/addplayer_view.dart';
 
 class GameMode extends StatelessWidget {
   @override
@@ -23,11 +24,15 @@ class GameMode extends StatelessWidget {
                 'Game Mode',
                 style: TextStyle(fontSize: 70.sp, fontWeight: FontWeight.bold),
               ),
-              Spacer(flex: 2,),
+              Spacer(
+                flex: 2,
+              ),
               MainButton(
                 color: Colors.yellow,
                 text: 'Kids',
                 onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AddPlayer()));
                   // TODO: Implement kids button
                 },
               ),
@@ -36,10 +41,14 @@ class GameMode extends StatelessWidget {
                 color: Colors.deepOrange,
                 text: 'Adults',
                 onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AddPlayer()));
                   // TODO: Implement Adults button
                 },
               ),
-              Spacer(flex: 4,)
+              Spacer(
+                flex: 4,
+              )
             ],
           )),
     );
