@@ -4,10 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class MainButton extends StatelessWidget {
   final Color color;
   final String text;
+  final Color textColor;
   final VoidCallback onPressed;
   const MainButton({
     Key key,
     this.color,
+    this.textColor,
     this.text,
     this.onPressed,
   }) : super(key: key);
@@ -31,6 +33,7 @@ class MainButton extends StatelessWidget {
             text,
             style: TextStyle(
                 fontSize: 40.sp,
+                color: textColor ?? Colors.black,
                 fontStyle: FontStyle.italic,
                 fontWeight: FontWeight.w500),
           ),
