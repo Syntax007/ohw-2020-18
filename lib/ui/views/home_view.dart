@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:truthordare/ui/views/add_dares.dart';
+import 'package:truthordare/ui/views/add_truth.dart';
 import 'package:truthordare/ui/views/gamemode_view.dart';
 
 import '../shared/main_button.dart';
@@ -31,7 +33,7 @@ class HomeView extends StatelessWidget {
               ),
               MainButton(
                 color: Colors.yellow,
-                text: 'Play',
+                text: 'PLAY',
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -44,17 +46,27 @@ class HomeView extends StatelessWidget {
               Spacer(),
               MainButton(
                 color: Colors.deepOrange,
-                text: 'Add Truth',
+                text: 'ADD TRUTH',
                 onPressed: () {
-                  // TODO: Implement Add truth button
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AddTruth(),
+                    ),
+                  );
                 },
               ),
               Spacer(),
               MainButton(
                 color: Colors.blue[500],
-                text: 'Add Dare',
+                text: 'ADD DARE',
                 onPressed: () {
-                  // TODO: Implement Add dare button
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AddDare(),
+                    ),
+                  );
                 },
               ),
               Spacer(
