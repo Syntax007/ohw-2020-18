@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truthordare/ui/shared/main_button.dart';
-import 'package:truthordare/ui/views/start_game/start_game.dart';
+import 'package:truthordare/ui/views/start_game/start_gameAdult.dart';
 
-class AddPlayer extends StatefulWidget {
+class AddPlayerAdult extends StatefulWidget {
   @override
-  _AddPlayerState createState() => _AddPlayerState();
+  _AddPlayerAdultState createState() => _AddPlayerAdultState();
 }
 
-class _AddPlayerState extends State<AddPlayer> {
+class _AddPlayerAdultState extends State<AddPlayerAdult> {
   TextEditingController _textEditingController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   String _name;
@@ -59,8 +59,8 @@ class _AddPlayerState extends State<AddPlayer> {
                         validator: (val) => val.isEmpty
                             ? 'Oops, you didn\'t enter a name'
                             : _players.contains(val)
-                                ? 'Player already exists'
-                                : null,
+                            ? 'Player already exists'
+                            : null,
                         controller: _textEditingController,
                         expands: false,
                         textCapitalization: TextCapitalization.words,
@@ -151,7 +151,7 @@ class _AddPlayerState extends State<AddPlayer> {
                     borderRadius: BorderRadius.circular(10)),
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => StartGame()));
+                      MaterialPageRoute(builder: (context) => StartGameAdult()));
                   // TODO: Implement kids button
                 },
               ),
