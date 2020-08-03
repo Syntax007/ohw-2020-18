@@ -38,11 +38,10 @@ class _AddDareState extends State<AddDare> {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: <Widget>[
-                SizedBox(height: 25),
+                SizedBox(height: 35),
                 Text(
                   'Add Dares',
-                  style: TextStyle(
-                      color: Colors.white, fontSize: 40, letterSpacing: 3),
+                  style: TextStyle(fontFamily:'DancingScript',fontSize: 90.sp, fontWeight: FontWeight.bold, letterSpacing: 3),
                 ),
                 SizedBox(height: 45),
                 Row(
@@ -89,8 +88,13 @@ class _AddDareState extends State<AddDare> {
                               controller.clear();
                               print(dares);
                             },
-                            child: Text('ADD Dare'),
-                            color: Colors.white,
+                            child: Text('ADD Dare',style: TextStyle(
+                              fontFamily: 'NanumMyeongjo',
+                              fontSize: 15.0,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),),
+                            color: Colors.lightBlueAccent,
                             padding: EdgeInsets.all(10),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(3.0),
@@ -130,13 +134,25 @@ class _AddDareState extends State<AddDare> {
                             ),
                         )),
                 SizedBox(height:20),
-                MainButton(
-                  text: 'BACK', 
-                  textColor: Color(0xFFE9E5FF), 
-                  color: Color(0xFF0000FE), 
+
+                FlatButton(
+                  color: Colors.deepPurple[900],
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(60.0,10.0,60.0,10.0),
+                    child: Text('BACK',
+                      style: TextStyle(
+                        fontFamily: 'NanumMyeongjo',
+                        fontSize: 35.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),),
+                  ),
+                  shape: BeveledRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
                   onPressed: (){
                     Navigator.pop(context);
-                  },)
+                  },
+                ),
 
               ],
             ),
