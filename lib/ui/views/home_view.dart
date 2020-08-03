@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:truthordare/ui/views/add_dares.dart';
+import 'package:truthordare/ui/views/add_truth.dart';
 import 'package:truthordare/ui/views/gamemode_view.dart';
 import 'package:truthordare/ui/views/add_truth.dart';
 import 'package:truthordare/ui/views/add_dares.dart';
@@ -55,7 +57,6 @@ class HomeView extends StatelessWidget {
                 },
               ),
               Spacer(),
-
               FlatButton(
                 color: Colors.blue[900],
                 child: Padding(
@@ -81,7 +82,6 @@ class HomeView extends StatelessWidget {
                 },
               ),
               Spacer(),
-
               FlatButton(
                 color: Colors.lightBlueAccent,
                 child: Padding(

@@ -110,7 +110,7 @@ class _AddDareState extends State<AddDare> {
                     // width: 300,
                     decoration: BoxDecoration(
                         color: Color(0xFFCCCCCC),
-                        borderRadius: BorderRadius.circular(40),
+                        borderRadius: BorderRadius.circular(20),
                         border: Border.all(color: Colors.black, width: 2)),
                     child: dares.isEmpty
                         ? Center(
