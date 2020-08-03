@@ -54,26 +54,21 @@ class _AddPlayerState extends State<AddPlayer> {
                         onChanged: (val) {
                           setState(() => _name = val);
                         },
-                        validator: (val) => val.isEmpty
-                            ? 'Oops, you didn\'t enter a name'
-                            : _players.contains(val)
-                                ? 'Player already exists'
-                                : null,
+                        validator: (val) => _players.contains(val)
+                            ? 'Player already exists'
+                            : null,
                         controller: _textEditingController,
                         expands: false,
                         textCapitalization: TextCapitalization.words,
-                        style: TextStyle(fontSize: 50.sp),
+                        // style: TextStyle(fontSize: 50.sp),
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 40.sp, horizontal: 16.sp),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.sp),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.sp),
+                            borderSide:
+                                BorderSide(color: Colors.black, width: 4.0),
                           ),
                           enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.sp),
+                            borderSide:
+                                BorderSide(color: Colors.black, width: 3.0),
                           ),
                           errorStyle: TextStyle(color: Colors.yellow),
                           hintText: 'Enter player name',
@@ -82,19 +77,29 @@ class _AddPlayerState extends State<AddPlayer> {
                         ),
                       ),
                     ),
+                    SizedBox(
+                      width: 10,
+                    ),
                     Expanded(
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.person_add,
-                          size: 80.sp,
-                          color: Colors.yellow,
+                      flex: 2,
+                      child: SizedBox(
+                        height: 54,
+                        child: RaisedButton(
+                          onPressed: () {
+                            if (_formKey.currentState.validate() &&
+                                _name.trim().isNotEmpty) {
+                              setState(() => _players.add(_name));
+                              _textEditingController.clear();
+                            }
+                          },
+                          child: Text('Add Player'),
+                          color: Colors.white,
+                          padding: EdgeInsets.all(10),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(3.0),
+                            side: BorderSide(color: Colors.black, width: 3),
+                          ),
                         ),
-                        onPressed: () {
-                          if (_formKey.currentState.validate()) {
-                            setState(() => _players.add(_name));
-                            _textEditingController.clear();
-                          }
-                        }, //TODO: Implement Add Player button
                       ),
                     ),
                   ],
@@ -105,24 +110,24 @@ class _AddPlayerState extends State<AddPlayer> {
               child: ListView.builder(
                 itemCount: _players.length,
                 itemBuilder: (context, index) {
-                  return Card(
-                    color: Colors.blue,
-                    child: ListTile(
-                      trailing: IconButton(
-                        icon: Icon(
-                          Icons.cancel,
-                          color: Colors.yellow,
-                        ),
-                        onPressed: () {
-                          setState(() => _players.remove(_players[index]));
-                        }, //TODO: Implement Delete Player button
-                      ),
-                      title: Text(
-                        _players[index],
-                        style: TextStyle(
-                          fontSize: 30.sp,
-                          color: Colors.yellow,
-                          fontWeight: FontWeight.w500,
+                  return Container(
+                    margin: const EdgeInsets.fromLTRB(8.0, 2, 8, 2),
+                    decoration: BoxDecoration(
+                        color: Color(0xFFCCCCCC),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: Colors.black, width: 2)),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(8.0, 10, 8, 10),
+                      child: ListTile(
+                        title: Text(_players[index]),
+                        trailing: IconButton(
+                          icon: Icon(
+                            Icons.cancel,
+                            // color: Colors.yellow,
+                          ),
+                          onPressed: () {
+                            setState(() => _players.remove(_players[index]));
+                          }, //TODO: Implement Delete Player button
                         ),
                       ),
                     ),
