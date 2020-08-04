@@ -53,6 +53,7 @@ class HomeView extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) => GameMode(),
                     ),
+                    
                   );
                 },
               ),
@@ -76,7 +77,7 @@ class HomeView extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AddTruth(),
+                      builder: (context) => GameMode(isTruth: true,),
                     ),
                   );
                 },
@@ -97,11 +98,10 @@ class HomeView extends StatelessWidget {
                 shape: BeveledRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 onPressed: () {
-                  // TODO: Implement Add dare button
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AddDare(),
+                      builder: (context) => GameMode(isTruth: false,),
                     ),
                   );
                 },
