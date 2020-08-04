@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import './start_game/questionbrain.dart' as qb;
-
+import '../shared/main_button.dart';
 
 class AddTruth extends StatefulWidget {
-  final bool isTeen;
-
-  const AddTruth({Key key, this.isTeen}) : super(key: key);
   @override
   _AddTruthState createState() => _AddTruthState();
 }
@@ -84,13 +80,10 @@ class _AddTruthState extends State<AddTruth> {
                           height: 54,
                           child: RaisedButton(
                             onPressed: () {
-                              if (truth.trim().isNotEmpty && !truths.contains(truth)) {
-                                widget.isTeen 
-                                ? setState(() {
-                                  qb.TeenTruthBrain().addTeenTruth(truth);
-                                })
-                                : setState((){
-                                  qb.AdultTruthBrain().addAdultTruth(truth);
+                              if (truth.trim().isNotEmpty &&
+                                  !truths.contains(truth)) {
+                                setState(() {
+                                  truths = addTo(truths, truth);
                                 });
                               }
                               controller.clear();
@@ -123,8 +116,7 @@ class _AddTruthState extends State<AddTruth> {
                         color: Color(0xFFCCCCCC),
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(color: Colors.black, width: 2)),
-                    child: widget.isTeen ?
-                      qb.TeenTruthBrain().teenTruthBank.length <= 10
+                    child: truths.isEmpty
                         ? Center(
                             child: Padding(
                             padding:
@@ -141,13 +133,11 @@ class _AddTruthState extends State<AddTruth> {
                             padding: const EdgeInsets.fromLTRB(8.0, 18, 8, 18),
                             child: Column(
                               children: <Widget>[
-                                for (String i in qb.TeenTruthBrain())
+                                for (String i in truths)
                                   ListTile(title: Text(i))
                               ],
                             ),
-                          ) 
-                          : null
-                          ),
+                          )),
                 SizedBox(height: 20),
                 FlatButton(
                   color: Colors.deepPurple[900],

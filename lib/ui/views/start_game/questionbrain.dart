@@ -18,20 +18,12 @@ class TeenTruthBrain {
     Question('Have you ever peed the bed?', true),
     Question('Have you ever lied about your age?', true),
   ];
-  //To get the list of questions
-  List<Question> get teenTruthBank => _teenTruthBank;
 
   void nextQuestion() async {
     await Future.delayed(Duration(microseconds: 500));
     if (_questionNumber < _teenTruthBank.length - 1) {
       _questionNumber++;
     }
-  }
-
-  //To add user questions to teen truth list
-  void addTeenTruth(String question) {
-    Question _question = Question(question, true);
-    _teenTruthBank.add(_question);
   }
 
   String getQuestionText() {
@@ -122,12 +114,6 @@ class AdultTruthBrain {
     if (_questionNumber < _adultTruthBank.length - 1) {
       _questionNumber++;
     }
-  }
-
-  //To add user questions to teen truth list
-  void addAdultTruth(String question) {
-    Question _question = Question(question, true);
-    _adultTruthBank.add(_question);
   }
 
   String getQuestionText() {

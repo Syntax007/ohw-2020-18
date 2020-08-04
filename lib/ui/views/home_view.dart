@@ -53,7 +53,6 @@ class HomeView extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) => GameMode(),
                     ),
-                    
                   );
                 },
               ),
@@ -77,7 +76,7 @@ class HomeView extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => GameMode(isTruth: true,),
+                      builder: (context) => AddTruth(),
                     ),
                   );
                 },
@@ -101,7 +100,7 @@ class HomeView extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => GameMode(isTruth: false,),
+                      builder: (context) => AddDare(),
                     ),
                   );
                 },
