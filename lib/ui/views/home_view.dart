@@ -97,7 +97,6 @@ class HomeView extends StatelessWidget {
                 shape: BeveledRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 onPressed: () {
-                  // TODO: Implement Add dare button
                   Navigator.push(
                     context,
                     MaterialPageRoute(

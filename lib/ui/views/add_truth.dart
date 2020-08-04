@@ -12,7 +12,7 @@ class _AddTruthState extends State<AddTruth> {
   List<String> truths = [];
   final controller = TextEditingController();
 
-  List<String> addTo(List<String> list, String item){
+  List<String> addTo(List<String> list, String item) {
     list.add(item);
     return list;
   }
@@ -20,9 +20,7 @@ class _AddTruthState extends State<AddTruth> {
   String truth;
   @override
   Widget build(BuildContext context) {
-
-
-  ScreenUtil.init(context, height: 1440, width: 720);
+    ScreenUtil.init(context, height: 1440, width: 720);
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -41,7 +39,11 @@ class _AddTruthState extends State<AddTruth> {
                 SizedBox(height: 35),
                 Text(
                   'Add Truths',
-                  style: TextStyle(fontFamily:'DancingScript',fontSize: 90.sp, fontWeight: FontWeight.bold, letterSpacing: 3),
+                  style: TextStyle(
+                      fontFamily: 'DancingScript',
+                      fontSize: 90.sp,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 3),
                 ),
                 SizedBox(height: 45),
                 Row(
@@ -66,9 +68,7 @@ class _AddTruthState extends State<AddTruth> {
                             enabledBorder: OutlineInputBorder(
                               borderSide:
                                   BorderSide(color: Colors.black, width: 3.0),
-                            )
-                            ),
-
+                            )),
                       ),
                     ),
                     SizedBox(
@@ -80,7 +80,8 @@ class _AddTruthState extends State<AddTruth> {
                           height: 54,
                           child: RaisedButton(
                             onPressed: () {
-                              if(truth.trim().isNotEmpty && !truths.contains(truth)){
+                              if (truth.trim().isNotEmpty &&
+                                  !truths.contains(truth)) {
                                 setState(() {
                                   truths = addTo(truths, truth);
                                 });
@@ -88,12 +89,15 @@ class _AddTruthState extends State<AddTruth> {
                               controller.clear();
                               print(truths);
                             },
-                            child: Text('ADD Truth',style: TextStyle(
-                              fontFamily: 'NanumMyeongjo',
-                              fontSize: 14.0,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),),
+                            child: Text(
+                              'ADD Truth',
+                              style: TextStyle(
+                                fontFamily: 'NanumMyeongjo',
+                                fontSize: 14.0,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                             color: Colors.lightBlueAccent,
                             padding: EdgeInsets.all(10),
                             shape: RoundedRectangleBorder(
@@ -115,45 +119,46 @@ class _AddTruthState extends State<AddTruth> {
                     child: truths.isEmpty
                         ? Center(
                             child: Padding(
-                              padding: const EdgeInsets.fromLTRB(10, 100, 10, 100),
-                              child: Text(
+                            padding:
+                                const EdgeInsets.fromLTRB(10, 100, 10, 100),
+                            child: Text(
                               'No Questions Added yet',
                               style: TextStyle(
                                   fontSize: 20,
                                   letterSpacing: 2,
                                   color: Color(0xFF6A6A6A)),
-                          ),
-                            ))
+                            ),
+                          ))
                         : Padding(
-                          padding: const EdgeInsets.fromLTRB(8.0, 18, 8, 18),
-                          child: Column(
+                            padding: const EdgeInsets.fromLTRB(8.0, 18, 8, 18),
+                            child: Column(
                               children: <Widget>[
-                                for(String i in truths)
-                                ListTile(title: Text(i))
+                                for (String i in truths)
+                                  ListTile(title: Text(i))
                               ],
                             ),
-                        )),
-                SizedBox(height:20),
+                          )),
+                SizedBox(height: 20),
                 FlatButton(
                   color: Colors.deepPurple[900],
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(60.0,10.0,60.0,10.0),
-                    child: Text('BACK',
+                    padding: EdgeInsets.fromLTRB(60.0, 10.0, 60.0, 10.0),
+                    child: Text(
+                      'BACK',
                       style: TextStyle(
                         fontFamily: 'NanumMyeongjo',
                         fontSize: 35.0,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                      ),),
+                      ),
+                    ),
                   ),
                   shape: BeveledRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
-                  onPressed: (){
+                  onPressed: () {
                     Navigator.pop(context);
                   },
                 ),
-
-
               ],
             ),
           ),
