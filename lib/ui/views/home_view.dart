@@ -28,10 +28,7 @@ class HomeView extends StatelessWidget {
               ),
               Text(
                 'Dare To Click',
-                style: TextStyle(
-                    fontFamily: 'DancingScript',
-                    fontSize: 90.sp,
-                    fontWeight: FontWeight.bold),
+                style: TextStyle(fontFamily:'DancingScript',fontSize: 90.sp, fontWeight: FontWeight.bold),
               ),
               Spacer(
                 flex: 2,
