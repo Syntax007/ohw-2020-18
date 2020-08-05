@@ -19,10 +19,7 @@ Nusaybah Fuad-Gafar
 
 Dowload:
 
-for Andriod:
+Andriod:
 
-for Ios:
+Ios:
 
-Project Description
-We created a truth or dare app. There are different truths and dares in the app. The app is suitable for kids,teens and adults
->>>>>>> upstream/master
