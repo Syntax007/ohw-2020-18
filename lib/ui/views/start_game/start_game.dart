@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'questionbrain.dart';
+import '../addplayer_view.dart' as APTeen;
 
 // Creating an instance of the class TeenTruthBrain
 TeenTruthBrain teenTruthBrain = TeenTruthBrain();
@@ -11,117 +14,134 @@ TeenDareBrain teenDareBrain = TeenDareBrain();
 class StartGame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Random _random = Random();
+    int _randomName = _random.nextInt(APTeen.players.length).toInt();
+    print(_randomName);
+
     return Container(
-      decoration:new BoxDecoration(
-          image:  new DecorationImage(
-            image: new AssetImage("assets/header.jpg"),
-            fit: BoxFit.cover,)
-      ),
+      decoration: new BoxDecoration(
+          image: new DecorationImage(
+        image: new AssetImage("assets/header.jpg"),
+        fit: BoxFit.cover,
+      )),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                height: 150.sp,
-              ),
-
-              Center(
-                child: Text('Truth or Dare',
-                  style: TextStyle(
-                    fontFamily:'DancingScript',
-                    fontSize: 40.0,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-
-              Center(//Todo: Show added player name here
-                child: Text(''),
-              ),
-
-              SizedBox(
-                height: 50.0,
-              ),
-
-              Padding(
-                padding: EdgeInsets.all(50.0),
-                child: FlatButton(
-                  onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SecondRoute()),
-                    );
-                  },
-                  color: Colors.lightBlueAccent,
-                  shape: BeveledRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('Truth',
-                      style: TextStyle(
-                        fontFamily:'DancingScript',
-                        fontSize: 40.0,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+          child: SingleChildScrollView(
+            child: Container(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 150.sp,
+                    ),
+                    Center(
+                      child: Text(
+                        'Truth or Dare',
+                        style: TextStyle(
+                          fontFamily: 'DancingScript',
+                          fontSize: 40.0,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ),
-
-
-              Center(
-                child: Text('OR',
-                  style: TextStyle(
-                    fontFamily:'DancingScript',
-                    fontSize: 40.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-
-
-              Padding(
-                padding: EdgeInsets.all(50.0),
-                child: FlatButton(
-                  onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ThirdRoute()),
-                    );
-                  },
-                  color: Colors.blue[900],
-                  shape: BeveledRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('Dare',
-                      style: TextStyle(
-                        fontFamily:'DancingScript',
-                        fontSize: 40.0,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                    SizedBox(
+                      height: 20.sp,
+                    ),
+                    Center(
+                      //TODO: Show added player name here
+                      child: Text(
+                        APTeen.players[_randomName],
+                        style: TextStyle(
+                          fontFamily: 'DancingScript',
+                          fontSize: 40.0,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
+                    SizedBox(
+                      height: 50.0,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(50.0),
+                      child: FlatButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SecondRoute()),
+                          );
+                        },
+                        color: Colors.lightBlueAccent,
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Truth',
+                            style: TextStyle(
+                              fontFamily: 'DancingScript',
+                              fontSize: 40.0,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Text(
+                        'OR',
+                        style: TextStyle(
+                          fontFamily: 'DancingScript',
+                          fontSize: 40.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(50.0),
+                      child: FlatButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ThirdRoute()),
+                          );
+                        },
+                        color: Colors.blue[900],
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Dare',
+                            style: TextStyle(
+                              fontFamily: 'DancingScript',
+                              fontSize: 40.0,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-
-            ],
+            ),
           ),
         ),
       ),
     );
   }
 }
-
-
-
 
 /*
     When user clicks on Truth in Truth or Dare for Teens
@@ -138,24 +158,31 @@ class _SecondRouteState extends State<SecondRoute> {
   void checkCompleted(bool userPickedAnswer) {
     bool correctAnswer = teenTruthBrain.getCorrectAnswer();
 
-    setState(() {
-      if ( teenTruthBrain.isFinished() == true) {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => StartGame()));
-        Alert(context: context, title: "QUIZ FINISHED", desc: "Flutter is awesome.").show();
+    setState(()  {
+      if (teenTruthBrain.isFinished() == true) {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => StartGame()));
+        // Alert(
+        //         context: context,
+        //         title: "QUIZ FINISHED",
+        //         desc: "Flutter is awesome.")
+        //     .show();
         teenTruthBrain.reset();
       }
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => StartGame()));
       teenTruthBrain.nextQuestion();
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: new BoxDecoration(
           image: new DecorationImage(
-            image: new AssetImage("assets/header.jpg"),
-            fit: BoxFit.cover,)
-      ),
+        image: new AssetImage("assets/header.jpg"),
+        fit: BoxFit.cover,
+      )),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: SafeArea(
@@ -164,16 +191,16 @@ class _SecondRouteState extends State<SecondRoute> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Center(
-                child: Text('Truth',
+                child: Text(
+                  'Truth',
                   style: TextStyle(
-                    fontFamily:'DancingScript',
+                    fontFamily: 'DancingScript',
                     fontSize: 50.0,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-
               Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Container(
@@ -184,7 +211,8 @@ class _SecondRouteState extends State<SecondRoute> {
                     elevation: 9,
                     color: Colors.transparent,
                     child: Center(
-                      child: Text(teenTruthBrain.getQuestionText(),
+                      child: Text(
+                        teenTruthBrain.getQuestionText(),
                         style: TextStyle(
                           fontSize: 30.0,
                           color: Colors.white,
@@ -195,7 +223,6 @@ class _SecondRouteState extends State<SecondRoute> {
                   ),
                 ),
               ),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -208,15 +235,16 @@ class _SecondRouteState extends State<SecondRoute> {
                         borderRadius: BorderRadius.circular(10)),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text('FORFEIT',
+                      child: Text(
+                        'FORFEIT',
                         style: TextStyle(
                           fontSize: 35.0,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                        ),),
+                        ),
+                      ),
                     ),
                   ),
-
                   FlatButton(
                     onPressed: () {
                       checkCompleted(true);
@@ -226,12 +254,14 @@ class _SecondRouteState extends State<SecondRoute> {
                         borderRadius: BorderRadius.circular(10)),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text('DONE',
+                      child: Text(
+                        'DONE',
                         style: TextStyle(
                           fontSize: 35.0,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                        ),),
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -243,10 +273,6 @@ class _SecondRouteState extends State<SecondRoute> {
     );
   }
 }
-
-
-
-
 
 /*
     When user clicks on Dare in Truth or Dare for Teens.
@@ -264,14 +290,18 @@ class _ThirdRouteState extends State<ThirdRoute> {
     bool correctAnswer = teenDareBrain.getCorrectAnswer();
 
     setState(() {
-      if ( teenDareBrain.isFinished() == true) {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => StartGame()));
-        Alert(context: context, title: "QUIZ FINISHED", desc: "Flutter is awesome.").show();
+      if (teenDareBrain.isFinished() == true) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => StartGame()));
+        // Alert(
+        //         context: context,
+        //         title: "QUIZ FINISHED",
+        //         desc: "Flutter is awesome.")
+        //     .show();
         teenDareBrain.reset();
-
-
       }
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => StartGame()));
       teenDareBrain.nextQuestion();
     });
   }
@@ -281,9 +311,9 @@ class _ThirdRouteState extends State<ThirdRoute> {
     return Container(
       decoration: new BoxDecoration(
           image: new DecorationImage(
-            image: new AssetImage("assets/header.jpg"),
-            fit: BoxFit.cover,)
-      ),
+        image: new AssetImage("assets/header.jpg"),
+        fit: BoxFit.cover,
+      )),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: SafeArea(
@@ -292,16 +322,16 @@ class _ThirdRouteState extends State<ThirdRoute> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Center(
-                child: Text('Dare',
+                child: Text(
+                  'Dare',
                   style: TextStyle(
-                    fontFamily:'DancingScript',
+                    fontFamily: 'DancingScript',
                     fontSize: 50.0,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-
               Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Container(
@@ -312,7 +342,8 @@ class _ThirdRouteState extends State<ThirdRoute> {
                     elevation: 9,
                     color: Colors.transparent,
                     child: Center(
-                      child: Text(teenDareBrain.getQuestionText(),
+                      child: Text(
+                        teenDareBrain.getQuestionText(),
                         style: TextStyle(
                           fontSize: 30.0,
                           color: Colors.white,
@@ -323,7 +354,6 @@ class _ThirdRouteState extends State<ThirdRoute> {
                   ),
                 ),
               ),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -336,15 +366,16 @@ class _ThirdRouteState extends State<ThirdRoute> {
                         borderRadius: BorderRadius.circular(10)),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text('FORFEIT',
+                      child: Text(
+                        'FORFEIT',
                         style: TextStyle(
                           fontSize: 35.0,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                        ),),
+                        ),
+                      ),
                     ),
                   ),
-
                   FlatButton(
                     onPressed: () {
                       checkCompleted(true);
@@ -354,12 +385,14 @@ class _ThirdRouteState extends State<ThirdRoute> {
                         borderRadius: BorderRadius.circular(10)),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text('DONE',
+                      child: Text(
+                        'DONE',
                         style: TextStyle(
                           fontSize: 35.0,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                        ),),
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -370,5 +403,4 @@ class _ThirdRouteState extends State<ThirdRoute> {
       ),
     );
   }
-
 }

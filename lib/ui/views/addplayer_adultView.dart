@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truthordare/ui/shared/main_button.dart';
 import 'package:truthordare/ui/views/start_game/start_gameAdult.dart';
 
+List<String> players = [];
+
 class AddPlayerAdult extends StatefulWidget {
   @override
   _AddPlayerAdultState createState() => _AddPlayerAdultState();
@@ -12,7 +14,6 @@ class _AddPlayerAdultState extends State<AddPlayerAdult> {
   TextEditingController _textEditingController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   String _name;
-  List<String> _players = [];
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,7 @@ class _AddPlayerAdultState extends State<AddPlayerAdult> {
             Text(
               'Add Player',
               style: TextStyle(
-                fontFamily:'DancingScript',
+                fontFamily: 'DancingScript',
                 fontSize: 90.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -56,26 +57,21 @@ class _AddPlayerAdultState extends State<AddPlayerAdult> {
                         onChanged: (val) {
                           setState(() => _name = val);
                         },
-                        validator: (val) => val.isEmpty
-                            ? 'Oops, you didn\'t enter a name'
-                            : _players.contains(val)
+                        validator: (val) => players.contains(val)
                             ? 'Player already exists'
                             : null,
                         controller: _textEditingController,
                         expands: false,
                         textCapitalization: TextCapitalization.words,
-                        style: TextStyle(fontSize: 50.sp),
+                        // style: TextStyle(fontSize: 50.sp),
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 40.sp, horizontal: 16.sp),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.sp),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.sp),
+                            borderSide:
+                                BorderSide(color: Colors.black, width: 4.0),
                           ),
                           enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.sp),
+                            borderSide:
+                                BorderSide(color: Colors.black, width: 3.0),
                           ),
                           errorStyle: TextStyle(color: Colors.yellow),
                           hintText: 'Enter player name',
@@ -84,19 +80,31 @@ class _AddPlayerAdultState extends State<AddPlayerAdult> {
                         ),
                       ),
                     ),
+                    SizedBox(
+                      width: 10,
+                    ),
                     Expanded(
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.person_add,
-                          size: 80.sp,
-                          color: Colors.yellow,
+                      flex: 2,
+                      child: SizedBox(
+                        height: 54,
+                        child: RaisedButton(
+                          onPressed: () {
+                            if (_formKey.currentState.validate() && _name != null &&
+                                _name != null &&
+                                _name.trim().isNotEmpty) {
+                              setState(() => players.add(_name));
+                              _textEditingController.clear();
+                              _name = null;
+                            }
+                          },
+                          child: Text('Add Player'),
+                          color: Colors.white,
+                          padding: EdgeInsets.all(10),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(3.0),
+                            side: BorderSide(color: Colors.black, width: 3),
+                          ),
                         ),
-                        onPressed: () {
-                          if (_formKey.currentState.validate()) {
-                            setState(() => _players.add(_name));
-                            _textEditingController.clear();
-                          }
-                        }, //TODO: Implement Add Player button
                       ),
                     ),
                   ],
@@ -105,26 +113,26 @@ class _AddPlayerAdultState extends State<AddPlayerAdult> {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: _players.length,
+                itemCount: players.length,
                 itemBuilder: (context, index) {
-                  return Card(
-                    color: Colors.blue,
-                    child: ListTile(
-                      trailing: IconButton(
-                        icon: Icon(
-                          Icons.cancel,
-                          color: Colors.yellow,
-                        ),
-                        onPressed: () {
-                          setState(() => _players.remove(_players[index]));
-                        }, //TODO: Implement Delete Player button
-                      ),
-                      title: Text(
-                        _players[index],
-                        style: TextStyle(
-                          fontSize: 30.sp,
-                          color: Colors.yellow,
-                          fontWeight: FontWeight.w500,
+                  return Container(
+                    margin: const EdgeInsets.fromLTRB(8.0, 2, 8, 2),
+                    decoration: BoxDecoration(
+                        color: Color(0xFFCCCCCC),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: Colors.black, width: 2)),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(8.0, 10, 8, 10),
+                      child: ListTile(
+                        title: Text(players[index]),
+                        trailing: IconButton(
+                          icon: Icon(
+                            Icons.cancel,
+                            // color: Colors.yellow,
+                          ),
+                          onPressed: () {
+                            setState(() => players.remove(players[index]));
+                          },
                         ),
                       ),
                     ),
@@ -138,21 +146,26 @@ class _AddPlayerAdultState extends State<AddPlayerAdult> {
               child: FlatButton(
                 color: Colors.deepPurple[900],
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(50.0,10.0,50.0,10.0),
-                  child: Text('START',
+                  padding: EdgeInsets.fromLTRB(50.0, 10.0, 50.0, 10.0),
+                  child: Text(
+                    'START',
                     style: TextStyle(
                       fontFamily: 'NanumMyeongjo',
                       fontSize: 35.0,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                    ),),
+                    ),
+                  ),
                 ),
                 shape: BeveledRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => StartGameAdult()));
-                  // TODO: Implement kids button
+                  if (players.isNotEmpty) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => StartGameAdult()));
+                  }
                 },
               ),
             ),

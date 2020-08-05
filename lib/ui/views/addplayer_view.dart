@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:truthordare/ui/shared/main_button.dart';
 import 'package:truthordare/ui/views/start_game/start_game.dart';
 
+  List<String> players = [];
+
 class AddPlayer extends StatefulWidget {
   @override
   _AddPlayerState createState() => _AddPlayerState();
@@ -12,8 +14,6 @@ class _AddPlayerState extends State<AddPlayer> {
   TextEditingController _textEditingController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   String _name;
-  List<String> _players = [];
-
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, height: 1440, width: 720);
@@ -47,6 +47,7 @@ class _AddPlayerState extends State<AddPlayer> {
               child: Form(
                 key: _formKey,
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
@@ -56,7 +57,7 @@ class _AddPlayerState extends State<AddPlayer> {
                         onChanged: (val) {
                           setState(() => _name = val);
                         },
-                        validator: (val) => _players.contains(val)
+                        validator: (val) => players.contains(val)
                             ? 'Player already exists'
                             : null,
                         controller: _textEditingController,
@@ -88,10 +89,11 @@ class _AddPlayerState extends State<AddPlayer> {
                         height: 54,
                         child: RaisedButton(
                           onPressed: () {
-                            if (_formKey.currentState.validate() &&
+                            if (_formKey.currentState.validate() && _name != null &&
                                 _name.trim().isNotEmpty) {
-                              setState(() => _players.add(_name));
+                              setState(() => players.add(_name));
                               _textEditingController.clear();
+                              _name = null;
                             }
                           },
                           child: Text('Add Player'),
@@ -110,7 +112,7 @@ class _AddPlayerState extends State<AddPlayer> {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: _players.length,
+                itemCount: players.length,
                 itemBuilder: (context, index) {
                   return Container(
                     margin: const EdgeInsets.fromLTRB(8.0, 2, 8, 2),
@@ -121,15 +123,15 @@ class _AddPlayerState extends State<AddPlayer> {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(8.0, 10, 8, 10),
                       child: ListTile(
-                        title: Text(_players[index]),
+                        title: Text(players[index]),
                         trailing: IconButton(
                           icon: Icon(
                             Icons.cancel,
                             // color: Colors.yellow,
                           ),
                           onPressed: () {
-                            setState(() => _players.remove(_players[index]));
-                          }, //TODO: Implement Delete Player button
+                            setState(() => players.remove(players[index]));
+                          },
                         ),
                       ),
                     ),
@@ -155,8 +157,10 @@ class _AddPlayerState extends State<AddPlayer> {
                 shape: BeveledRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 onPressed: () {
-                  Navigator.push(context,
+                  if (players.isNotEmpty){
+                    Navigator.push(context,
                       MaterialPageRoute(builder: (context) => StartGame()));
+                  }
                   // TODO: Implement kids button
                 },
               ),

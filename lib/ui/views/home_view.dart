@@ -36,23 +36,23 @@ class HomeView extends StatelessWidget {
               FlatButton(
                 color: Colors.deepPurple[900],
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(60.0,10.0,60.0,10.0),
-                  child: Text('Play',
+                  padding: EdgeInsets.fromLTRB(60.0, 10.0, 60.0, 10.0),
+                  child: Text(
+                    'Play',
                     style: TextStyle(
                       fontFamily: 'NanumMyeongjo',
                       fontSize: 35.0,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                    ),),
+                    ),
+                  ),
                 ),
                 shape: BeveledRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => GameMode(),
-                    ),
+                    MaterialPageRoute(builder: (context) => GameMode()),
                   );
                 },
               ),
@@ -60,23 +60,24 @@ class HomeView extends StatelessWidget {
               FlatButton(
                 color: Colors.blue[900],
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(10.0,10.0,10.0,10.0),
-                  child: Text('Add Truths',
+                  padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                  child: Text(
+                    'Add Truths',
                     style: TextStyle(
                       fontFamily: 'NanumMyeongjo',
                       fontSize: 35.0,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                    ),),
+                    ),
+                  ),
                 ),
                 shape: BeveledRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 onPressed: () {
-                  //
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AddTruth(),
+                      builder: (context) => GameMode(isTruth: true),
                     ),
                   );
                 },
@@ -85,28 +86,28 @@ class HomeView extends StatelessWidget {
               FlatButton(
                 color: Colors.lightBlueAccent,
                 child: Padding(
-                  padding:  EdgeInsets.fromLTRB(12.0,10.0,15.0,10.0),
-                  child: Text('Add Dares',
+                  padding: EdgeInsets.fromLTRB(12.0, 10.0, 15.0, 10.0),
+                  child: Text(
+                    'Add Dares',
                     style: TextStyle(
                       fontFamily: 'NanumMyeongjo',
                       fontSize: 35.0,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                    ),),
+                    ),
+                  ),
                 ),
                 shape: BeveledRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 onPressed: () {
-                  // TODO: Implement Add dare button
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AddDare(),
+                      builder: (context) => GameMode(isTruth: false),
                     ),
                   );
                 },
               ),
-
               Spacer(
                 flex: 4,
               )
