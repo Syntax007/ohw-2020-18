@@ -1,7 +1,5 @@
 <<<<<<< HEAD
-# truthordare
-
-A new Flutter project.
+App Name: #Dare To Click
 
 ## Getting Started
 
