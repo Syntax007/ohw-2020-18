@@ -17,7 +17,11 @@ Olumide Nwosu
 Christopher Nwosu-Madueke
 Nusaybah Fuad-Gafar
 
+Dowload:
 
+for Andriod:
+
+for Ios:
 
 Project Description
 We created a truth or dare app. There are different truths and dares in the app. The app is suitable for kids,teens and adults
