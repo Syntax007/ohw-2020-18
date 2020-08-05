@@ -16,9 +16,8 @@ Team Members
 
 
 
-Dowload:
+Download for Andriod :
 =======
-Andriod:
 
-Ios:
-
+Download for Ios :
+=======
