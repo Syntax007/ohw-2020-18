@@ -1,7 +1,6 @@
-<<<<<<< HEAD
-App Name: #Dare To Click
 
-## Getting Started
+
+## Dare To Click
 
 This project is a starting point for a Flutter application.
 
