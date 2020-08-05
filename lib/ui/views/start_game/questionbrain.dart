@@ -24,7 +24,7 @@ class TeenTruthBrain {
   List<Question> get getTeenTruthBank => teenTruthBank;
 
   void nextQuestion() async {
-    await Future.delayed(Duration(microseconds: 500));
+    await Future.delayed(Duration(microseconds: 200));
     if (_questionNumber < teenTruthBank.length - 1) {
       _questionNumber++;
     }
@@ -47,14 +47,13 @@ class TeenTruthBrain {
     }
   }
 
-  int reset() {
+  Future<int> reset() async{
+    await Future.delayed(Duration(microseconds: 100));
     return _questionNumber = 0;
   }
 }
 
-class TeenDareBrain {
-  int _questionNumber = 0;
-  List<Question> _teenDareBank = [
+List<Question> teenDareBank = [
     Question('Act like a chicken', true),
     Question('Put all clothes on inside out', true),
     Question('Stop blinking for 30 seconds', true),
@@ -68,31 +67,38 @@ class TeenDareBrain {
     Question('Balance a spoon on your nose for 10 second', true),
   ];
 
+class TeenDareBrain {
+  int _questionNumber = 0;
+  
+  //To get the list of dares
+  List<Question> get getTeenDareBank => teenDareBank;
+
   void nextQuestion() async {
-    await Future.delayed(Duration(microseconds: 500));
-    if (_questionNumber < _teenDareBank.length - 1) {
+    await Future.delayed(Duration(microseconds: 200));
+    if (_questionNumber < teenDareBank.length - 1) {
       _questionNumber++;
     }
   }
 
   String getQuestionText() {
-    return _teenDareBank[_questionNumber].questionText;
+    return teenDareBank[_questionNumber].questionText;
   }
 
   bool getCorrectAnswer() {
-    return _teenDareBank[_questionNumber].questionDecision;
+    return teenDareBank[_questionNumber].questionDecision;
   }
 
   // To check the last question in the Bank
   bool isFinished() {
-    if (_questionNumber == _teenDareBank.length - 1) {
+    if (_questionNumber == teenDareBank.length - 1) {
       return true;
     } else {
       return false;
     }
   }
 
-  int reset() {
+  Future<int> reset() async {
+    await Future.delayed(Duration(microseconds: 100));
     return _questionNumber = 0;
   }
 }
@@ -111,7 +117,6 @@ List<Question> adultTruthBank = [
     Question('Which bad habits do you have?', true),
   ];
 
-
 class AdultTruthBrain {
   int _questionNumber = 0;
   
@@ -119,7 +124,7 @@ class AdultTruthBrain {
   List<Question> get getAdultTruthBank => adultTruthBank;
 
   Future<void> nextQuestion() async {
-    await Future.delayed(Duration(microseconds: 500));
+    await Future.delayed(Duration(microseconds: 200));
     if (_questionNumber < adultTruthBank.length - 1) {
       _questionNumber++;
     }
@@ -142,14 +147,13 @@ class AdultTruthBrain {
     }
   }
 
-  int reset() {
+  Future<int> reset() async {
+    await Future.delayed(Duration(microseconds: 100));
     return _questionNumber = 0;
   }
 }
 
-class AdultDareBrain {
-  int _questionNumber = 0;
-  List<Question> _adultDareBank = [
+List<Question> adultDareBank = [
     Question(
         ' Sniff the breath of everyone in the room and say who has the worst',
         true),
@@ -165,24 +169,30 @@ class AdultDareBrain {
     Question('Have a 3- way kiss with two other players', true),
   ];
 
+class AdultDareBrain {
+  int _questionNumber = 0;
+  
+  //To get the list of dares
+  List<Question> get getAdultDareBank => adultDareBank;
+
   Future<void> nextQuestion() async {
-    await Future.delayed(Duration(microseconds: 500));
-    if (_questionNumber < _adultDareBank.length - 1) {
+    await Future.delayed(Duration(microseconds: 200));
+    if (_questionNumber < adultDareBank.length - 1) {
       _questionNumber++;
     }
   }
 
   String getQuestionText() {
-    return _adultDareBank[_questionNumber].questionText;
+    return adultDareBank[_questionNumber].questionText;
   }
 
   bool getCorrectAnswer() {
-    return _adultDareBank[_questionNumber].questionDecision;
+    return adultDareBank[_questionNumber].questionDecision;
   }
 
   // To check the last question in the Bank
   bool isFinished() {
-    if (_questionNumber == _adultDareBank.length - 1) {
+    if (_questionNumber == adultDareBank.length - 1) {
       return true;
     } else {
       return false;

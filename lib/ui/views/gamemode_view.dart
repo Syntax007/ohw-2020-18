@@ -69,7 +69,7 @@ class GameMode extends StatelessWidget {
                           : Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => AddDare()));
+                                  builder: (context) => AddDare(isTeen: true)));
                   // TODO: Implement kids button
                 },
               ),
@@ -106,7 +106,7 @@ class GameMode extends StatelessWidget {
                           : Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => AddDare()));
+                                  builder: (context) => AddDare(isTeen: false)));
                   // TODO: Implement Adults button
                 },
               ),

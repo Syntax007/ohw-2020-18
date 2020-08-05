@@ -90,9 +90,11 @@ class _AddPlayerAdultState extends State<AddPlayerAdult> {
                         child: RaisedButton(
                           onPressed: () {
                             if (_formKey.currentState.validate() && _name != null &&
+                                _name != null &&
                                 _name.trim().isNotEmpty) {
                               setState(() => players.add(_name));
                               _textEditingController.clear();
+                              _name = null;
                             }
                           },
                           child: Text('Add Player'),

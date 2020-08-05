@@ -90,7 +90,7 @@ class _AddTruthState extends State<AddTruth> {
                                     qb.teenTruthBank.add(Question(truth, true));
                                   });
                                 } else if (!widget.isTeen &&
-                                    !_teenTruthBank.contains(truth)) {
+                                    !_adultTruthBank.contains(truth)) {
                                   setState(() {
                                     qb.adultTruthBank.add(Question(truth, true));
                                   });
