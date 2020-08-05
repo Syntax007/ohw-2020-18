@@ -4,7 +4,13 @@ import 'package:truthordare/ui/shared/main_button.dart';
 import 'package:truthordare/ui/views/addplayer_view.dart';
 import 'package:truthordare/ui/views/addplayer_adultView.dart';
 
+import 'add_dares.dart';
+import 'add_truth.dart';
+
 class GameMode extends StatelessWidget {
+  final bool isTruth;
+
+  GameMode({this.isTruth});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +28,13 @@ class GameMode extends StatelessWidget {
                 height: 150.sp,
               ),
               Text(
-                'Game Mode',
-                style: TextStyle(fontFamily:'DancingScript',fontSize: 90.sp, fontWeight: FontWeight.bold),
+                isTruth == null
+                    ? 'Game Mode'
+                    : isTruth ? 'Truth Mode' : 'Dare Mode',
+                style: TextStyle(
+                    fontFamily: 'DancingScript',
+                    fontSize: 90.sp,
+                    fontWeight: FontWeight.bold),
               ),
               Spacer(
                 flex: 2,
@@ -31,46 +42,74 @@ class GameMode extends StatelessWidget {
               FlatButton(
                 color: Colors.lightBlueAccent,
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(50.0,10.0,50.0,10.0),
-                  child: Text('TEEN',
+                  padding: EdgeInsets.fromLTRB(50.0, 10.0, 50.0, 10.0),
+                  child: Text(
+                    isTruth == null
+                        ? 'TEEN'
+                        : isTruth ? 'Teen Truth' : 'Teen Dare',
                     style: TextStyle(
                       fontFamily: 'NanumMyeongjo',
                       fontSize: 35.0,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                    ),),
+                    ),
+                  ),
                 ),
                 shape: BeveledRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => AddPlayer()));
+                  isTruth == null
+                      ? Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => AddPlayer()))
+                      : isTruth
+                          ? Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AddTruth(isTeen: true)))
+                          : Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AddDare(isTeen: true)));
                   // TODO: Implement kids button
                 },
               ),
               Spacer(),
-
               FlatButton(
                 color: Colors.blue[900],
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(40.0,10.0,40.0,10.0),
-                  child: Text('ADULT',
+                  padding: EdgeInsets.fromLTRB(40.0, 10.0, 40.0, 10.0),
+                  child: Text(
+                    isTruth == null
+                        ? 'ADULT'
+                        : isTruth ? 'Adult Truth' : 'Adult Dare',
                     style: TextStyle(
                       fontFamily: 'NanumMyeongjo',
                       fontSize: 35.0,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                    ),),
+                    ),
+                  ),
                 ),
                 shape: BeveledRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => AddPlayerAdult()));
+                  isTruth == null
+                      ? Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AddPlayerAdult()))
+                      : isTruth
+                          ? Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AddTruth(isTeen: false)))
+                          : Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AddDare(isTeen: false)));
                   // TODO: Implement Adults button
                 },
               ),
-
               Spacer(
                 flex: 4,
               )

@@ -89,10 +89,11 @@ class _AddPlayerState extends State<AddPlayer> {
                         height: 54,
                         child: RaisedButton(
                           onPressed: () {
-                            if (_formKey.currentState.validate() &&
+                            if (_formKey.currentState.validate() && _name != null &&
                                 _name.trim().isNotEmpty) {
                               setState(() => players.add(_name));
                               _textEditingController.clear();
+                              _name = null;
                             }
                           },
                           child: Text('Add Player'),
