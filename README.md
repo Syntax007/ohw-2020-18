@@ -16,8 +16,7 @@ Team Members
 
 
 
-Download for Andriod :
+Download for Andriod : https://drive.google.com/file/d/1llyuWXiFKUONmyIOjgTS-tHhgYpeEIaG/view?usp=sharing
 =======
 
-Download for Ios :
-=======
+
